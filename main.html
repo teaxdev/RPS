@@ -1,0 +1,65 @@
+<script>
+    function getComputerChoice() {
+        const computerChoice = '';
+        let rand;
+        rand = Math.floor(Math.random() * 3); 
+        //console.log(rand);
+        if (rand == 0) {
+            return "rock";
+        }
+        else if (rand == 1) {
+            return "paper";
+        }
+        else {
+            return "scissors";
+        }
+    }
+    
+    function getHumanChoice() {
+        let input = prompt("Rock, Paper or Scissors?")
+        if (input == null) {
+            alert("Please enter a valid input")
+            return getHumanChoice();
+        }
+        input = input.toLowerCase().trim();
+       if (input == "rock") {
+        return input; 
+       }
+       else if (input == "paper") {
+        return input; 
+       }
+       else if (input == "scissors") {
+        return input; 
+       }
+       else {
+        return "please input a valid answer!"
+       }
+    }
+    let humanScore = 0;
+    let computerScore = 0;
+
+    function playRound(humanChoice, computerChoice) {
+        
+    }
+    /* function getComputerChoice to return r, p or s randomly
+    return random number so computer go random
+
+    function getHumanChoice to get user input
+    return a valid choice
+
+    create humanScore and computerScore to tally score
+    set starting variable to 0
+
+    function playRound
+    humanChoice and computerChoice  
+    make human choice able to accept capitalized letters
+
+    console.log the winner
+
+    increment humanScore or computerScore based on the winner
+
+    function playGame to sat the game to play 5 rounds
+    move playRound and score variables so they are declared in here
+    call playRound 5 times
+    */
+</script>
