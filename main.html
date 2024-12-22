@@ -38,31 +38,74 @@
     let humanScore = 0;
     let computerScore = 0;
 
-    function playRound(humanChoice, computerChoice) {
-        if (humanChoice == computerChoice) {
+    function roundWinner(input, computerChoice) {
+        if (input == computerChoice) {
             return ("draw");
         }
-        else if (humanChoice == "rock" && computerChoice == "paper") {
+        else if (input == "rock" && computerChoice == "paper") {
             return ("computer");
         }
-        else if (humanChoice == "paper" && computerChoice == "scissors") {
+        else if (input == "paper" && computerChoice == "scissors") {
             return ("computer");
         }
-        else if (humanChoice == "scissors" && computerChoice == "rock") {
+        else if (input == "scissors" && computerChoice == "rock") {
             return ("computer");
         }
-        else if (humanChoice == "rock" && computerChoice == "scissors") {
+        else if (input == "rock" && computerChoice == "scissors") {
             return ("human");
         }
-        else if (humanChoice == "paper" && computerChoice == "rock") {
+        else if (input == "paper" && computerChoice == "rock") {
             return ("human");
         }
-        else if (humanChoice == "scissors" && computerChoice == "paper") {
+        else if (input == "scissors" && computerChoice == "paper") {
             return ("human");
         }
     }
 
+    function playRound(input) {
+        let computerInput = getComputerChoice();
+        let winner = roundWinner(input, computerInput);
+
+        let winAlert = `${input} vs. ${computerInput}... ${winner} wins!`;
+
+        switch(result) {
+            case "human":
+                humanDub++;
+            break;
+            case "computer":
+                aiDub++;
+            break;
+            default:
+                tie++;
+        }
+        if (humanDub == 5) {
+            finalScoreMsg("humanity prevails.... for now.");
+        }
+        else if (aiDub == 5) {
+            finalScoreMsg("AI takeover imminent.");
+        }
+    }
     
+    function playGame() {
+        let rounds = 0;
+        let result = "";
+        let humanDub = 0;
+        let aiDub = 0;
+
+        while (rounds < 5) {
+            result = playRound();
+            if(result == "human"){
+                humanDub++;
+            }
+            else if (result == "computer") {
+                aiDub++;
+            }
+            else {
+                rounds--;
+            }
+            rounds++;
+        }
+    }
     /* function getComputerChoice to return r, p or s randomly
     return random number so computer go random
 
