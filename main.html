@@ -5,13 +5,13 @@
         rand = Math.floor(Math.random() * 3); 
         //console.log(rand);
         if (rand == 0) {
-            return "rock";
+            return ("rock");
         }
         else if (rand == 1) {
-            return "paper";
+            return ("paper");
         }
         else {
-            return "scissors";
+            return ("scissors");
         }
     }
     
@@ -39,8 +39,30 @@
     let computerScore = 0;
 
     function playRound(humanChoice, computerChoice) {
-        
+        if (humanChoice == computerChoice) {
+            return ("draw");
+        }
+        else if (humanChoice == "rock" && computerChoice == "paper") {
+            return ("computer");
+        }
+        else if (humanChoice == "paper" && computerChoice == "scissors") {
+            return ("computer");
+        }
+        else if (humanChoice == "scissors" && computerChoice == "rock") {
+            return ("computer");
+        }
+        else if (humanChoice == "rock" && computerChoice == "scissors") {
+            return ("human");
+        }
+        else if (humanChoice == "paper" && computerChoice == "rock") {
+            return ("human");
+        }
+        else if (humanChoice == "scissors" && computerChoice == "paper") {
+            return ("human");
+        }
     }
+
+    
     /* function getComputerChoice to return r, p or s randomly
     return random number so computer go random
 
