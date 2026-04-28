@@ -1,4 +1,6 @@
 <script>
+    console.log("hi")
+
     function getComputerChoice() {
         const computerChoice = '';
         let rand;
@@ -19,21 +21,14 @@
         let input = prompt("Rock, Paper or Scissors?")
         if (input == null) {
             alert("Please enter a valid input")
-            return getHumanChoice();
+            getHumanChoice();
         }
         input = input.toLowerCase().trim();
-       if (input == "rock") {
-        return input; 
-       }
-       else if (input == "paper") {
-        return input; 
-       }
-       else if (input == "scissors") {
-        return input; 
-       }
-       else {
-        return "please input a valid answer!"
-       }
+        if (input == "rock" || input == "paper" || input == "scissors" || input == "exit") {
+            return input; 
+        } else {
+            return "please input a valid answer!"
+        }
     }
     let humanScore = 0;
     let computerScore = 0;
@@ -59,31 +54,37 @@
         }
         else if (input == "scissors" && computerChoice == "paper") {
             return ("human");
+        } else {
+            return "exit"
         }
     }
 
-    function playRound(input) {
+    function playRound() {
         let computerInput = getComputerChoice();
-        let winner = roundWinner(input, computerInput);
+        let humanInput = getHumanChoice();
+        let winner = roundWinner(humanInput, computerInput);
+        if (winner == "draw") {
+            let winAlert = `${humanInput} vs. ${computerInput}... it's a draw!`;
+            alert(winAlert);
+        } else if (winner == "human" || winner == "computer") {
+            let winAlert = `${humanInput} vs. ${computerInput}... ${winner} wins!`;
+            alert(winAlert);
+        } else {
+            let winAlert = `exiting.`;
+            alert(winAlert);
+        }
 
-        let winAlert = `${input} vs. ${computerInput}... ${winner} wins!`;
-
-        switch(result) {
-            case "human":
-                humanDub++;
-            break;
-            case "computer":
-                aiDub++;
-            break;
-            default:
-                tie++;
-        }
-        if (humanDub == 5) {
-            finalScoreMsg("humanity prevails.... for now.");
-        }
-        else if (aiDub == 5) {
-            finalScoreMsg("AI takeover imminent.");
-        }
+        // switch(result) {
+        //     case "human":
+        //         humanDub++;
+        //     break;
+        //     case "computer":
+        //         aiDub++;
+        //     break;
+        //     default:
+        //         tie++;
+        // }
+        return winner;
     }
     
     function playGame() {
@@ -92,20 +93,34 @@
         let humanDub = 0;
         let aiDub = 0;
 
-        while (rounds < 5) {
+        while (rounds < 4) {
             result = playRound();
-            if(result == "human"){
+            if (result == "human"){
                 humanDub++;
-            }
-            else if (result == "computer") {
+                console.log("human wins! rounds won:" + humanDub);
+                rounds++;
+            } else if (result == "computer") {
                 aiDub++;
+                console.log("computer wins! rounds won:" + aiDub);
+                rounds++;
+            } else if (result == "exit") {
+                console.log("exiting program");
+                break;
             }
             else {
-                rounds--;
+                console.log("try again");
             }
-            rounds++;
+            console.log(`round ${rounds}`)
         }
-    }
+        if (humanDub == 3) {
+            alert("humanity prevails.... for now.");
+        }
+        else if (aiDub == 3) {
+            alert("AI takeover imminent.");
+        }
+    };
+
+    playGame();
     /* function getComputerChoice to return r, p or s randomly
     return random number so computer go random
 
